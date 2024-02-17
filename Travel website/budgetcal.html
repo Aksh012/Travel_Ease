@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Travel Cost Estimator</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+
+        .logo {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .logo h1 a {
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav-lis ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-lis ul li {
+            list-style: none;
+        }
+
+        .nav-lis ul li a {
+            margin-left: 10px;
+            margin-right: 15px;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .nav-lis ul li a:hover {
+            color: blueviolet;
+            font-size: 25px;
+        }
+
+
+        .nav-lis {
+            display: flex;
+            width: 60%;
+            justify-content: right;
+            margin-right: 15px;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-top: 10px;
+            width: 20%;
+        }
+
+        .nav-lis input:hover {
+            width: 22%;
+            height: 25px;
+            border: 5px solid blueviolet;
+        }
+
+        /* Destination card styles */
+        .destination-card {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            width: calc(33.33% - 20px);
+            height: 450px;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .destination-card img {
+            max-width: 100%;
+            height: 300px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <h1><a href="/index.html">TRAVEL EASE</a></h1>
+            <img src="" alt="">
+        </div>
+        <div class="nav-lis" data-aos="fade-left" data-aos-delay="100">
+            <ul>
+                <li><a href="/index.html">Global</a></li>
+                <li><a href="/india.html">India</a></li>
+                <li><a href="/budgetcal.html">Budget Calculator</a></li>
+                <li><a href="">About Us</a></li>
+            </ul>
+            <input type="text" id="filter" placeholder="Search destinations">
+        </div>
+    </header>
+    <div class="container" data-aos="fade-up" data-aos-delay="300">
+        <h2>Global Budget Calculator</h2>
+        <label for="current-destination">Current Destination:</label>
+        <select id="current-destination">
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+            <option value="paris">Paris</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="newyork">New York</option>
+            <option value="london">London</option>
+            <option value="sydney">Sydney</option>
+            <option value="china">China</option>
+            <option value="peru">Peru</option>
+            <option value="egypt">Egypt</option>
+            <option value="greece">Greece</option>
+            <option value="italy">Italy</option>
+            <option value="morocco">Morocco</option>
+            <option value="australia">Australia</option>
+            <option value="cambodia">Cambodia</option>
+            <option value="uae">UAE</option>
+            <option value="brazil">Brazil</option>
+            <option value="japan">Japan</option>
+            <!-- Add more destination options as needed -->
+        </select>
+        <label for="desired-country">Desired Country:</label>
+        <select id="desired-country">
+            <option value="paris">Paris</option>
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="newyork">New York</option>
+            <option value="london">London</option>
+            <option value="sydney">Sydney</option>
+            <option value="china">China</option>
+            <option value="peru">Peru</option>
+            <option value="egypt">Egypt</option>
+            <option value="greece">Greece</option>
+            <option value="italy">Italy</option>
+            <option value="morocco">Morocco</option>
+            <option value="australia">Australia</option>
+            <option value="cambodia">Cambodia</option>
+            <option value="uae">UAE</option>
+            <option value="brazil">Brazil</option>
+            <option value="japan">Japan</option>
+            <!-- Add more country options as needed -->
+        </select>
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" placeholder="Enter the number of days" min="1">
+        <label for="travelers">Number of Travelers:</label>
+        <input type="number" id="travelers" placeholder="Enter the number of travelers" min="1">
+        <button id="calculate">Estimate Cost</button>
+        <div id="result"></div>
+    </div>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="200">
+        <h2>Indian Budget Calculator</h2>
+        <label for="current-destination">Current Destination:</label>
+        <select id="current-destination">
+            <option value="andhrapradesh">Andhra Pradesh</option>
+            <option value="arunachalpradesh">Arunachal Pradesh</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="kerala">Kerala</option>
+            <option value="goa">Goa</option>
+            <option value="himachalpradesh">Himachal Pradesh</option>
+            <option value="uttarakhand">Uttarakhand</option>
+            <option value="tamilnadu">Tamil Nadu</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="punjab">Punjab</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="assam">Assam</option>
+            <option value="gujarat">Gujarat</option>
+            <option value="odisha">Odisha</option>
+            <option value="jammuandkashmir">Jammu and Kashmir</option>
+            <option value="meghalaya">Meghalaya</option>
+            <option value="sikkim">Sikkim</option>
+            <option value="andamanandnicobarislands">Andaman and Nicobar Islands</option>
+            <option value="madhyapradesh">Madhya Pradesh</option>
+            <option value="telangana">Telangana</option>
+            <option value="uttarpradesh">uttarpradesh</option>
+            <option value="bihar">Bihar</option>
+            <option value="lakshadweep">Lakshadweepr</option>
+            <!-- Add more destination options as needed -->
+        </select>
+        <label for="desired-country">Desired Country:</label>
+        <select id="desired-country">
+            <option value="himachalpradesh">Himachal Pradesh</option>
+            <option value="andhrapradesh">Andhra Pradesh</option>
+            <option value="arunachalpradesh">Arunachal Pradesh</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="kerala">Kerala</option>
+            <option value="goa">Goa</option>
+            <option value="uttarakhand">Uttarakhand</option>
+            <option value="tamilnadu">Tamil Nadu</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="punjab">Punjab</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="assam">Assam</option>
+            <option value="gujarat">Gujarat</option>
+            <option value="odisha">Odisha</option>
+            <option value="jammuandkashmir">Jammu and Kashmir</option>
+            <option value="meghalaya">Meghalaya</option>
+            <option value="sikkim">Sikkim</option>
+            <option value="andamanandnicobarislands">Andaman and Nicobar Islands</option>
+            <option value="madhyapradesh">Madhya Pradesh</option>
+            <option value="telangana">Telangana</option>
+            <option value="uttarpradesh">uttarpradesh</option>
+            <option value="bihar">Bihar</option>
+            <option value="lakshadweep">Lakshadweepr</option>
+            <!-- Add more country options as needed -->
+        </select>
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" placeholder="Enter the number of days" min="1">
+        <label for="travelers">Number of Travelers:</label>
+        <input type="number" id="travelers" placeholder="Enter the number of travelers" min="1">
+        <button id="calculate">Estimate Cost</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // JavaScript logic for estimating travel cost
+        document.getElementById("calculate").addEventListener("click", function () {
+            const currentDestination = document.getElementById("current-destination").value;
+            const desiredCountry = document.getElementById("desired-country").value;
+            const days = parseInt(document.getElementById("days").value) || 1;
+            const travelers = parseInt(document.getElementById("travelers").value) || 1;
+
+            // Define cost per day per person for each destination (customize as needed)
+            const costPerDay = {
+                india: 50,
+                usa: 100,
+                europe: 150
+
+            };
+
+            const cost = costPerDay[currentDestination] * days * travelers;
+
+            document.getElementById("result").innerHTML = `Estimated cost for ${travelers} travelers visiting ${desiredCountry} from ${currentDestination} for ${days} days is $${cost}.`;
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+
+</html>
